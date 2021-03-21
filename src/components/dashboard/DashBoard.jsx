@@ -1,13 +1,12 @@
 import { Divider, Grid, Typography } from "@material-ui/core";
 import React from "react";
-import ButtonCreate from "./dashboard/ButtonCreate";
-import Headercomp from "./HeaderComp";
+import ButtonCreate from "./ButtonCreate";
+import Headercomp from "../HeaderComp";
 import Project from "./project/Project";
 
 const Dashboard = () => {
   return (
     <>
-      <Headercomp />
       <Grid item xs={12}>
         <Typography variant="h3" style={{ textAlign: "center" }}>
           Projects

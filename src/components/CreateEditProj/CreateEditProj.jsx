@@ -10,28 +10,24 @@ import { Form, Formik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 const INITIAL_VALUES = {
-  projTaskSummary: "",
-  acceptance: "",
-  date: "",
-  priority: "",
-  status: "",
+  projName: "",
+  projId: "",
+  projDescr: "",
+  startDate: new Date().toISOString().slice(0, 10),
+  endDate: "",
 };
 
 const VALIDATION_SCHEMA = Yup.object({
-  projTaskSummary: Yup.string().required("Campo Obbligatorio"),
-  date: Yup.date().required("Campo Obbligatorio"),
-  priority: Yup.string().required("Campo Obbligatorio"),
-  status: Yup.string().required("Campo Obbligatorio"),
+  projName: Yup.string().required("Campo Obbligatorio"),
+  projId: Yup.string().required("Campo Obbligatorio").max(5).min(5),
+  projDescr: Yup.string().required("Campo Obbligatorio"),
+  startDate: Yup.date().required("Campo Obbligatorio"),
+  endDate: Yup.date(),
 });
 
-const priorityList = ["High", "Medium", "Low"];
-
-const statusList = ["TO DO", "IN PROGRESS", "LOW"];
-
-function AddUpdateTask() {
+function CreateEditProj() {
   return (
     <>
-      <Button style={{ color: "grey" }}>{`< Back to Project Board`}</Button>
       <Formik
         initialValues={INITIAL_VALUES}
         validationSchema={VALIDATION_SCHEMA}
@@ -56,20 +52,15 @@ function AddUpdateTask() {
               >
                 <Grid item xs={12}>
                   <Typography variant="h3" style={{ textAlign: "center" }}>
-                    Add /Update Project Task
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography variant="h6" style={{ textAlign: "center" }}>
-                    Project Name + Project Code
+                    Create / Edit Project form
                   </Typography>
                 </Grid>
 
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
                   <MyTextField
-                    name="projTaskSummary"
-                    label="Project Task Summary"
+                    name="projName"
+                    label="Project Name"
                     fullWidth={true}
                   />
                 </Grid>
@@ -78,11 +69,23 @@ function AddUpdateTask() {
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
                   <MyTextField
-                    name="acceptance"
+                    name="projId"
+                    label="Unique Project ID"
+                    fullWidth={true}
+                    disabled={true}
+                    style={{ backgroundColor: "#e4e8eb" }}
+                  />
+                </Grid>
+                <Grid item sm={2} xs={0}></Grid>
+
+                <Grid item sm={2} xs={0}></Grid>
+                <Grid item sm={8} xs={12}>
+                  <MyTextField
+                    name="projDescr"
                     multiline
-                    rows={3}
-                    rowsMax={5}
-                    label="Acceptance Criteria"
+                    rows={2}
+                    rowsMax={4}
+                    label="Project Description"
                     fullWidth={true}
                   />
                 </Grid>
@@ -90,28 +93,20 @@ function AddUpdateTask() {
 
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
-                  <MyDateTimeField type="date" name="date" label="Due Date" />
-                </Grid>
-                <Grid item sm={2} xs={0}></Grid>
-
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
-                  <MySelectField
-                    name="priority"
-                    listToBeRendered={priorityList}
-                    label="Select Priority"
-                    fullWidth={true}
+                  <MyDateTimeField
+                    type="date"
+                    name="startDate"
+                    label="Start Date"
                   />
                 </Grid>
                 <Grid item sm={2} xs={0}></Grid>
 
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
-                  <MySelectField
-                    name="status"
-                    listToBeRendered={statusList}
-                    label="Select Status"
-                    fullWidth={true}
+                  <MyDateTimeField
+                    type="date"
+                    name="endDate"
+                    label="Estimated End Date"
                   />
                 </Grid>
                 <Grid item sm={2} xs={0}></Grid>
@@ -136,4 +131,4 @@ function AddUpdateTask() {
   );
 }
 
-export default AddUpdateTask;
+export default CreateEditProj;
