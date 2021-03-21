@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Dashboard from "./components/DashBoard";
+import { Divider } from "@material-ui/core";
+import LandingPage from "./components/landingPage/LandingPage";
+import Login from "./components/login/Login";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Dashboard />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <LandingPage/>
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Login/>
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
+      <Divider style={{ backgroundColor: "black" }} />
     </div>
   );
 }
-
-export default App;
