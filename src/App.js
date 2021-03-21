@@ -2,6 +2,8 @@ import Dashboard from "./components/DashBoard";
 import { Divider } from "@material-ui/core";
 import LandingPage from "./components/landingPage/LandingPage";
 import Login from "./components/login/Login";
+import Submit from "./components/signup/Submit";
+import AddUpdateTask from "./components/AddUpdateTask/AddUpdateTask";
 
 export default function App() {
   return (
@@ -10,18 +12,19 @@ export default function App() {
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
-      <LandingPage/>
+      <LandingPage />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
-      <Login/>
+      <Login />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
-
+      <Submit />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
       <Divider style={{ backgroundColor: "black" }} />
+      <AddUpdateTask />
     </div>
   );
 }

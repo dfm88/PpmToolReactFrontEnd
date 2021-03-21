@@ -2,22 +2,29 @@ import { Divider, Typography } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import React from "react";
-import MyTextField from "./../FormsCompPersonalized/MyTextField";
-import MySubmitButton from "./../FormsCompPersonalized/MySubmitButton";
+import MyTextField from "../FormsCompPersonalized/MyTextField";
+import MySubmitButton from "../FormsCompPersonalized/MySubmitButton";
 import { Form, Formik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 const INITIAL_VALUES = {
+  name: "",
   email: "",
   password: "",
+  passwordConf: "",
 };
 
 const VALIDATION_SCHEMA = Yup.object({
+  name: Yup.string().required("Campo Obbligatorio"),
   email: Yup.string().required("Campo Obbligatorio").email(),
   password: Yup.string().required("Campo Obbligatorio"),
+  passwordConf: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords must match"
+  ),
 });
 
-function Login() {
+function Submit() {
   return (
     <Formik
       initialValues={INITIAL_VALUES}
@@ -39,13 +46,24 @@ function Login() {
               container
               justify="center"
               alignItems="stretch"
-              spacing={2}
+              spacing={1}
             >
               <Grid item xs={12}>
                 <Typography variant="h3" style={{ textAlign: "center" }}>
-                  Log In
+                  Sign Up
                 </Typography>
               </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h6" style={{ textAlign: "center" }}>
+                  Create Your Account
+                </Typography>
+              </Grid>
+
+              <Grid item sm={2} xs={0}></Grid>
+              <Grid item sm={8} xs={12}>
+                <MyTextField name="name" label="Name" fullWidth={true} />
+              </Grid>
+              <Grid item sm={2} xs={0}></Grid>
 
               <Grid item sm={2} xs={0}></Grid>
               <Grid item sm={8} xs={12}>
@@ -56,12 +74,20 @@ function Login() {
                 />
               </Grid>
               <Grid item sm={2} xs={0}></Grid>
-
               <Grid item sm={2} xs={0}></Grid>
               <Grid item sm={8} xs={12}>
                 <MyTextField
                   name="password"
                   label="Password"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item sm={2} xs={0}></Grid>
+              <Grid item sm={2} xs={0}></Grid>
+              <Grid item sm={8} xs={12}>
+                <MyTextField
+                  name="passwordConf"
+                  label="Confirm Password"
                   fullWidth={true}
                 />
               </Grid>
@@ -86,4 +112,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Submit;
