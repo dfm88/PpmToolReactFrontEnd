@@ -10,19 +10,31 @@ import { Form, Formik, useField, useFormikContext } from "formik";
 import * as Yup from "yup";
 
 const INITIAL_VALUES = {
-  projName: "",
-  projId: "",
-  projDescr: "",
-  startDate: new Date().toISOString().slice(0, 10),
-  endDate: "",
+  projectName: "",
+  projectIdentifier: "",
+  description: "",
+  start_date: new Date().toISOString().slice(0, 10),
+  end_date: "",
 };
 
 const VALIDATION_SCHEMA = Yup.object({
-  projName: Yup.string().required("Campo Obbligatorio"),
-  projId: Yup.string().required("Campo Obbligatorio").max(5).min(5),
-  projDescr: Yup.string().required("Campo Obbligatorio"),
-  startDate: Yup.date().required("Campo Obbligatorio"),
-  endDate: Yup.date(),
+  projectName: Yup.string().required("Campo Obbligatorio"),
+  projectIdentifier: Yup.string().required("Campo Obbligatorio").max(5).min(5),
+  description: Yup.string().required("Campo Obbligatorio"),
+  start_date: Yup.date().required("Campo Obbligatorio"),
+  end_date: Yup.date().when(
+    "startDate",
+    (start_date, yup) =>
+      start_date && yup.min(start_date, "End date cannot be before start date")
+  ),
+});
+
+const createProject = (values) => ({
+  projectName: values.projectName,
+  projectIdentifier: values.projectIdentifier,
+  description: values.description,
+  start_date: values.start_date,
+  end_date: values.end_date,
 });
 
 function CreateEditProj() {
@@ -33,6 +45,8 @@ function CreateEditProj() {
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={(values) => {
           console.log(values);
+          const proj = createProject(values);
+          console.log("PREOJ", proj);
         }}
       >
         {({ values, errors, isValid, meta }) => (
@@ -59,7 +73,7 @@ function CreateEditProj() {
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
                   <MyTextField
-                    name="projName"
+                    name="projectName"
                     label="Project Name"
                     fullWidth={true}
                   />
@@ -69,10 +83,10 @@ function CreateEditProj() {
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
                   <MyTextField
-                    name="projId"
+                    name="projectIdentifier"
                     label="Unique Project ID"
                     fullWidth={true}
-                    disabled={true}
+                    disabled={false}
                     style={{ backgroundColor: "#e4e8eb" }}
                   />
                 </Grid>
@@ -81,7 +95,7 @@ function CreateEditProj() {
                 <Grid item sm={2} xs={0}></Grid>
                 <Grid item sm={8} xs={12}>
                   <MyTextField
-                    name="projDescr"
+                    name="description"
                     multiline
                     rows={2}
                     rowsMax={4}
@@ -95,7 +109,7 @@ function CreateEditProj() {
                 <Grid item sm={8} xs={12}>
                   <MyDateTimeField
                     type="date"
-                    name="startDate"
+                    name="start_date"
                     label="Start Date"
                   />
                 </Grid>
@@ -105,7 +119,7 @@ function CreateEditProj() {
                 <Grid item sm={8} xs={12}>
                   <MyDateTimeField
                     type="date"
-                    name="endDate"
+                    name="end_date"
                     label="Estimated End Date"
                   />
                 </Grid>
@@ -117,6 +131,7 @@ function CreateEditProj() {
                     variant="contained"
                     color="primary"
                     fullWidth={true}
+                    size="big"
                   >
                     Submit
                   </MySubmitButton>
