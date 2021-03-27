@@ -11,7 +11,7 @@ import {
   ListItemText,
   ListItemIcon,
   Hidden,
-  MenuItem,
+  MenuItem
 } from "@material-ui/core";
 import { React, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,9 +27,9 @@ import DraftsIcon from "@material-ui/icons/Drafts";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiIconButton-colorSecondary": {
-      color: "white",
-    },
-  },
+      color: "white"
+    }
+  }
 }));
 
 const HeaderComp = () => {
@@ -41,19 +41,19 @@ const HeaderComp = () => {
   const drawerItems = [
     {
       text: "Login",
-      icon: <VpnKeyIcon />,
+      icon: <VpnKeyIcon />
     },
     {
       text: "Signup",
-      icon: <AccountCircleIcon />,
-    },
+      icon: <AccountCircleIcon />
+    }
   ];
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <MenuItem component={Link} to="login">
+          <MenuItem component={Link} to="dashboard">
             <Hidden xsDown={true}>
               <Typography variant="h6">
                 Personal Project Management Tool&ensp;&ensp;
