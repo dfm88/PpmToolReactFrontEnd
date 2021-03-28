@@ -5,8 +5,12 @@ import * as api from "../../API/api";
 
 /******  WORKER SAGA  *********/
 function* loadProjectsWorker() {
-  const projects = yield call(api.getProjects);
-  yield put(projectsLoadedAction(projects));
+  try {
+    const projects = yield call(api.getProjects);
+    yield put(projectsLoadedAction(projects));
+  } catch (e) {
+    console.log("ERRORE IN loadProjectsWorker", e);
+  }
 }
 
 /******  WATCHER SAGA  *********/
