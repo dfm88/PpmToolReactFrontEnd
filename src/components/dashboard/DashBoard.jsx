@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import ButtonCreate from "./ButtonCreate";
-import Headercomp from "../HeaderComp";
+
 import Project from "./project/Project";
 
 const Dashboard = () => {

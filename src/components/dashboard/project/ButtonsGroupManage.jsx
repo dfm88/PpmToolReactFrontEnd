@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Grid } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
@@ -7,15 +7,15 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    justifyContent: "start"
-  }
+    justifyContent: "start",
+  },
 }));
 
 const ButtonsGroupManage = () => {
   const classes = useStyles();
   return (
     <>
-      <ButtonGroup orientation="vertical" style={{backgroundColor:'white'}} >
+      <ButtonGroup orientation="vertical" style={{ backgroundColor: "white" }}>
         <Button
           startIcon={<DeveloperBoardIcon />}
           color="default"

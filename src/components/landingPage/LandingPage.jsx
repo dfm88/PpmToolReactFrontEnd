@@ -1,4 +1,3 @@
-import { Divider } from "@material-ui/core";
 import { Button, Typography } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import React from "react";

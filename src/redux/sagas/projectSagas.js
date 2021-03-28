@@ -1,7 +1,7 @@
 import { takeEvery, takeLatest, call, put, all } from "redux-saga/effects";
 import { projectsLoadedAction } from "../../redux/ducks/projectsDuck";
 import { LOAD_PROJECTS } from "../ducks/projectsDuck";
-import * as api from "../../API/api";
+import * as api from "../../api/api";
 
 /******  WORKER SAGA  *********/
 function* loadProjectsWorker() {
@@ -16,4 +16,9 @@ function* loadProjectsWorker() {
 /******  WATCHER SAGA  *********/
 function* loadProjectsWatcher() {
   yield takeEvery(LOAD_PROJECTS, loadProjectsWorker);
+}
+
+//Export
+export function* projectSagas() {
+  yield all([loadProjectsWatcher()]);
 }

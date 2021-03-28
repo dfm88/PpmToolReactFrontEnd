@@ -11,7 +11,7 @@ import {
   ListItemText,
   ListItemIcon,
   Hidden,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import { React, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,16 +20,12 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import MenuIcon from "@material-ui/icons/Menu";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-import Divider from "@material-ui/core/Divider";
-import InboxIcon from "@material-ui/icons/Inbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiIconButton-colorSecondary": {
-      color: "white"
-    }
-  }
+      color: "white",
+    },
+  },
 }));
 
 const HeaderComp = () => {
@@ -41,12 +37,12 @@ const HeaderComp = () => {
   const drawerItems = [
     {
       text: "Login",
-      icon: <VpnKeyIcon />
+      icon: <VpnKeyIcon />,
     },
     {
       text: "Signup",
-      icon: <AccountCircleIcon />
-    }
+      icon: <AccountCircleIcon />,
+    },
   ];
 
   return (
@@ -62,11 +58,11 @@ const HeaderComp = () => {
             <Hidden smUp={true}>
               <Typography variant="h6">PPM Tool&ensp;&ensp;</Typography>
             </Hidden>
-            <Typography variant="p">Dashboard</Typography>
+            <Typography variant="subtitle1">Dashboard</Typography>
           </MenuItem>
 
           <Box flexGrow={1} />
-          <Hidden xsDown={true}>
+          <Hidden smDown={true}>
             <Button color="inherit" className={classes.title}>
               Sign Up
             </Button>
@@ -74,7 +70,7 @@ const HeaderComp = () => {
               Login
             </Button>
           </Hidden>
-          <Hidden smUp={true}>
+          <Hidden mdUp={true}>
             <IconButton onClick={toggleFunction} color="secondary">
               <MenuIcon />
             </IconButton>
