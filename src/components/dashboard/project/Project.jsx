@@ -1,5 +1,5 @@
 import { Grid, Paper } from "@material-ui/core";
-import React from "react";
+import { React, useEffect } from "react";
 import ButtonsGroupManage from "./ButtonsGroupManage";
 import { useSelector, useDispatch } from "react-redux";
 //import { connect } from "react-redux";
@@ -11,7 +11,9 @@ const Project = (props) => {
   console.log("PROGETTI2", props.projectsReducer);
   const dispatch = useDispatch();
 
-  dispatch(Actions.PROJECTS.loadProjectAction());
+  useEffect(() => {
+    dispatch(Actions.PROJECTS.loadProjectAction());
+  }, []);
 
   return (
     <>
