@@ -33,6 +33,10 @@ const projectsReducer = (state = [], action) => {
         action.projects
       );
       return [...state, ...action.projects];
+
+    case PROJECTS.PROJECT_ADDED_SUCCESS:
+      return [...state, action.proj];
+
     default:
       return state;
   }

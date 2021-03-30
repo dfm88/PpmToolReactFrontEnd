@@ -14,6 +14,21 @@ const projectLoadedFailAction = (errors) => ({
   errors,
 });
 
+const addProjectAction = (project) => ({
+  type: PROJECTS.ADD_PROJECT,
+  project,
+});
+
+const projectAddedSuccessAction = (proj) => ({
+  type: PROJECTS.PROJECT_ADDED_SUCCESS,
+  proj,
+});
+
+const projectAddedFailAction = (errors) => ({
+  type: PROJECTS.PROJECT_ADDED_FAIL,
+  errors,
+});
+
 export {
   loadProjectAction,
   projectLoadedSuccessAction,
