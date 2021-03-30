@@ -3,11 +3,9 @@ import React from "react";
 
 const ButtonCreate = () => {
   return (
-    <>
-      <Button variant="contained" color="primary">
-        Create a Project
-      </Button>
-    </>
+    <Button variant="contained" color="primary">
+      Create a Project
+    </Button>
   );
 };
 

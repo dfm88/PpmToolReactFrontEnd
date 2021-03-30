@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore, compose } from "redux";
-import { projectReducer } from "./ducks/projectsDuck";
+import { projectReducer } from "./ducks/_projectsDuck";
 import createSagaMiddleware from "redux-saga";
 import { watcherSaga } from "./sagas/rootSagas";
 import rootSagas from "./sagas/rootSagas";

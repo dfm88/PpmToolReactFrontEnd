@@ -1,40 +1,29 @@
 import { Grid, Paper } from "@material-ui/core";
 import { React, useEffect } from "react";
 import ButtonsGroupManage from "./ButtonsGroupManage";
-import { useSelector, useDispatch } from "react-redux";
 //import { connect } from "react-redux";
-import Actions from "../../../redux/actions/index";
 
 const Project = (props) => {
-  const progetti = useSelector((state) => state.projectsReducer);
-  console.log("PROGETTI1", progetti);
-  console.log("PROGETTI2", props.projectsReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(Actions.PROJECTS.loadProjectAction());
-  }, []);
-
+  const { progetti } = props;
   return (
     <>
-      <Paper elevation={2} style={{ backgroundColor: "#dae5ed" }}>
-        <Grid
-          style={{ padding: "15px 15px 15px 15px" }}
-          container
-          spacing={3}
-          justify="space-between"
-        >
-          <Grid item md={4}>
-            1
-          </Grid>
-          <Grid item md={4}>
-            Titolo
-          </Grid>
-          <Grid item md={4}>
-            <ButtonsGroupManage />
-          </Grid>
+      <Grid
+        style={{ padding: "15px 15px 15px 15px", backgroundColor: "#dae5ed" }}
+        item
+        container
+        spacing={5}
+        component={Paper}
+      >
+        <Grid item md={4}>
+          {progetti.projectIdentifier}
         </Grid>
-      </Paper>
+        <Grid item md={4}>
+          {progetti.projectName}
+        </Grid>
+        <Grid item md={4}>
+          <ButtonsGroupManage />
+        </Grid>
+      </Grid>
     </>
   );
 };

@@ -1,9 +1,11 @@
-import { Button, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup, Typhography } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import DeveloperBoardIcon from "@material-ui/icons/DeveloperBoard";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Typography } from "@material-ui/core";
+import { Hidden } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +24,9 @@ const ButtonsGroupManage = () => {
           variant="outlined"
           className={classes.root}
         >
-          Project Board
+          <Hidden smDown={true}>
+            <Typography> Project Board</Typography>
+          </Hidden>
         </Button>
         <Button
           className={classes.root}
@@ -30,7 +34,9 @@ const ButtonsGroupManage = () => {
           color="primary"
           variant="outlined"
         >
-          Update Project Info
+          <Hidden smDown={true}>
+            <Typography> Update Project Info</Typography>
+          </Hidden>
         </Button>
         <Button
           className={classes.root}
@@ -38,7 +44,9 @@ const ButtonsGroupManage = () => {
           color="secondary"
           variant="outlined"
         >
-          Delete Project
+          <Hidden smDown={true}>
+            <Typography> Delete Project</Typography>
+          </Hidden>
         </Button>
       </ButtonGroup>
     </>

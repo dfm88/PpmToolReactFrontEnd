@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiIconButton-colorSecondary": {
       color: "white",
     },
+    marginBottom: "20px",
   },
 }));
 

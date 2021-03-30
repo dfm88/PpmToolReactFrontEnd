@@ -1,13 +1,14 @@
 import { takeEvery, takeLatest, call, put, all } from "redux-saga/effects";
-import { projectsLoadedAction } from "../../redux/ducks/projectsDuck";
-import { LOAD_PROJECTS } from "../ducks/projectsDuck";
+import Actions from "../actions/index";
+import { PROJECTS } from "../constants/index";
 import * as api from "../../api/api";
 
 /******  WORKER SAGA  *********/
 function* loadProjectsWorker() {
   try {
     const projects = yield call(api.getProjects);
-    yield put(projectsLoadedAction(projects));
+    console.log("Progetti ricevuti in projectSaga", projects.data);
+    yield put(Actions.PROJECTS.projectLoadedSuccessAction(projects.data));
   } catch (e) {
     console.log("ERRORE IN loadProjectsWorker", e);
   }
@@ -15,7 +16,7 @@ function* loadProjectsWorker() {
 
 /******  WATCHER SAGA  *********/
 function* loadProjectsWatcher() {
-  yield takeEvery(LOAD_PROJECTS, loadProjectsWorker);
+  yield takeEvery(PROJECTS.LOAD_PROJECTS, loadProjectsWorker);
 }
 
 //Export
