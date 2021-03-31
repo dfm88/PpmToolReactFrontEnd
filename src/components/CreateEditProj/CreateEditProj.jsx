@@ -6,6 +6,8 @@ import MySubmitButton from "./../FormsCompPersonalized/MySubmitButton";
 import MyDateTimeField from "./../FormsCompPersonalized/MyDateTimeField";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import Actions from "../../../src/redux/actions/index";
 
 const INITIAL_VALUES = {
   projectName: "",
@@ -36,15 +38,20 @@ const createProject = (values) => ({
 });
 
 function CreateEditProj() {
+  const dispatch = useDispatch();
+  const handleAddProject = (values) => {
+    dispatch(Actions.PROJECTS.addProjectAction(values));
+  };
+
   return (
     <>
       <Formik
         initialValues={INITIAL_VALUES}
         validationSchema={VALIDATION_SCHEMA}
         onSubmit={(values) => {
-          console.log(values);
-          const proj = createProject(values);
-          console.log("PREOJ", proj);
+          console.log("PREOJ", values);
+
+          handleAddProject(values);
         }}
       >
         {({ values, errors, isValid, meta }) => (

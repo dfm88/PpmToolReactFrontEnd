@@ -2,6 +2,9 @@ import {
   loadProjectAction,
   projectLoadedSuccessAction,
   projectLoadedFailAction,
+  addProjectAction,
+  projectAddedSuccessAction,
+  projectAddedFailAction,
 } from "./projects";
 
 const Actions = {
@@ -9,6 +12,9 @@ const Actions = {
     loadProjectAction,
     projectLoadedSuccessAction,
     projectLoadedFailAction,
+    addProjectAction,
+    projectAddedSuccessAction,
+    projectAddedFailAction,
   },
 };
 

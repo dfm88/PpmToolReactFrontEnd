@@ -32,7 +32,7 @@ const projectsReducer = (state = [], action) => {
         "stamnpa STATE in projectReducer - Load SUCCESS",
         action.projects
       );
-      return [...state, ...action.projects];
+      return [...state, ...action.proj];
 
     case PROJECTS.PROJECT_ADDED_SUCCESS:
       return [...state, action.proj];

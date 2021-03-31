@@ -33,4 +33,7 @@ export {
   loadProjectAction,
   projectLoadedSuccessAction,
   projectLoadedFailAction,
+  addProjectAction,
+  projectAddedSuccessAction,
+  projectAddedFailAction,
 };
