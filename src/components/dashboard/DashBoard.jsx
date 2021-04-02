@@ -17,16 +17,13 @@ const Dashboard = (props) => {
   const classes = useStyles();
   const progetti = useSelector((state) => state.projectsReducer);
   const isLoading = useSelector((state) => state.loadingReducer);
-  console.log("PROGETTI1", progetti.lenght);
+  console.log("PROGETTI1", progetti);
   console.log("PROGETTI2", props.projectsReducer);
   const dispatch = useDispatch();
 
   //SIMULO RITARDO DEL SERVER
   useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(Actions.PROJECTS.loadProjectAction());
-    }, 2000);
-    return () => clearTimeout(timer);
+    dispatch(Actions.PROJECTS.loadProjectAction());
   }, []);
 
   return (
@@ -47,7 +44,7 @@ const Dashboard = (props) => {
           </Grid>
 
           <Grid item container direction="column" spacing={2}>
-            {progetti.length === 0 ? (
+            {isLoading ? (
               <>
                 <Grid item>
                   <Skeleton variant="rect" height={190} />
@@ -59,6 +56,8 @@ const Dashboard = (props) => {
                   <Skeleton variant="rect" height={190} />
                 </Grid>
               </>
+            ) : progetti.length === 0 ? (
+              <div>Nessun Progetto</div>
             ) : (
               progetti.map((item, index) => {
                 return (

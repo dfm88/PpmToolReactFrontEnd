@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Typography, Divider } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import React from "react";
 import MyTextField from "./../FormsCompPersonalized/MyTextField";
@@ -37,10 +37,10 @@ const createProject = (values) => ({
   end_date: values.end_date,
 });
 
-function CreateEditProj() {
+function CreateEditProj(props) {
   const dispatch = useDispatch();
-  const handleAddProject = (values) => {
-    dispatch(Actions.PROJECTS.addProjectAction(values));
+  const handleAddProject = (values, history) => {
+    dispatch(Actions.PROJECTS.addProjectAction(values, history));
   };
 
   return (
@@ -51,7 +51,7 @@ function CreateEditProj() {
         onSubmit={(values) => {
           console.log("PREOJ", values);
 
-          handleAddProject(values);
+          handleAddProject(values, props.history);
         }}
       >
         {({ values, errors, isValid, meta }) => (
@@ -67,7 +67,7 @@ function CreateEditProj() {
                 container
                 justify="center"
                 alignItems="stretch"
-                spacing={1}
+                spacing={2}
               >
                 <Grid item xs={12}>
                   <Typography variant="h3" style={{ textAlign: "center" }}>
@@ -75,18 +75,24 @@ function CreateEditProj() {
                   </Typography>
                 </Grid>
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={6} sm={8} xs={12}>
+                  <Divider />
+                </Grid>
+                <Grid item md={3} sm={2} xs={false} />
+
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={6} sm={8} xs={12}>
                   <MyTextField
                     name="projectName"
                     label="Project Name"
                     fullWidth={true}
                   />
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={6} sm={8} xs={12}>
                   <MyTextField
                     name="projectIdentifier"
                     label="Unique Project ID"
@@ -95,10 +101,10 @@ function CreateEditProj() {
                     style={{ backgroundColor: "#e4e8eb" }}
                   />
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={3} sm={2} xs={false} />
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={6} sm={8} xs={12}>
                   <MyTextField
                     name="description"
                     multiline
@@ -108,30 +114,30 @@ function CreateEditProj() {
                     fullWidth={true}
                   />
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={3} sm={2} xs={false} />
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={6} sm={8} xs={12}>
                   <MyDateTimeField
                     type="date"
                     name="start_date"
                     label="Start Date"
                   />
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={3} sm={2} xs={false} />
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={6} sm={8} xs={12}>
                   <MyDateTimeField
                     type="date"
                     name="end_date"
                     label="Estimated End Date"
                   />
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
+                <Grid item md={3} sm={2} xs={false} />
 
-                <Grid item sm={2} xs={0}></Grid>
-                <Grid item sm={8} xs={12}>
+                <Grid item md={6} sm={8} xs={12}>
                   <MySubmitButton
                     variant="contained"
                     color="primary"
@@ -141,7 +147,7 @@ function CreateEditProj() {
                     Submit
                   </MySubmitButton>
                 </Grid>
-                <Grid item sm={2} xs={0}></Grid>
+                <Grid item md={3} sm={2} xs={false} />
               </Grid>
             </Grid>
           </Form>

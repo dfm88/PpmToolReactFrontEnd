@@ -14,15 +14,17 @@ function* loadProjectsWorker() {
   }
 }
 
-function* addProjectWorker({ project }) {
+function* addProjectWorker(dati) {
+  const parametri = [dati.project, dati.history];
+  const progetto = yield call(api.addProject, ...parametri);
   try {
-    console.log("Progetto ADDED1 ricevuti in projectSaga", project);
-    const progetto = yield call(api.addProject, project);
+    console.log("Progetto ADDED1 ricevuti in projectSaga", parametri);
 
     console.log("Progetto ADDED2 ricevuti in projectSaga", progetto);
-    yield put(Actions.PROJECTS.projectAddedSuccessAction(progetto));
+    yield put(Actions.PROJECTS.projectAddedSuccessAction(progetto.data));
   } catch (e) {
     console.log("ERRORE IN addProjectsWorker", e);
+    console.log("ERRORE -> DATI RICEVUTI IN addProjectsWorker", progetto);
   }
 }
 

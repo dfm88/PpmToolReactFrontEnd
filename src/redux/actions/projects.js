@@ -14,9 +14,10 @@ const projectLoadedFailAction = (errors) => ({
   errors,
 });
 
-const addProjectAction = (project) => ({
+const addProjectAction = (project, history) => ({
   type: PROJECTS.ADD_PROJECT,
   project,
+  history,
 });
 
 const projectAddedSuccessAction = (proj) => ({
