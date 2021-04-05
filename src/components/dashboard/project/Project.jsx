@@ -16,7 +16,6 @@ const Project = (props) => {
       >
         <Grid item md={4}>
           <Typography variant="h6" style={{ fontWeight: "bold" }}>
-            {" "}
             {progetti.projectIdentifier}
           </Typography>
         </Grid>

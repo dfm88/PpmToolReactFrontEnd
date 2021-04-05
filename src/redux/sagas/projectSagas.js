@@ -15,15 +15,22 @@ function* loadProjectsWorker() {
 }
 
 function* addProjectWorker(dati) {
-  const parametri = [dati.project, dati.history];
-  const progetto = yield call(api.addProject, ...parametri);
+  var parametri = null;
+  var progetto = null;
   try {
+    parametri = [dati.project, dati.history];
+    progetto = yield call(api.addProject, ...parametri);
     console.log("Progetto ADDED1 ricevuti in projectSaga", parametri);
+    if (progetto.status >= 400) {
+      throw new Error(progetto.data);
+    }
 
     console.log("Progetto ADDED2 ricevuti in projectSaga", progetto);
     yield put(Actions.PROJECTS.projectAddedSuccessAction(progetto.data));
   } catch (e) {
-    console.log("ERRORE IN addProjectsWorker", e);
+    yield put(Actions.PROJECTS.projectAddedFailAction(progetto));
+    console.log("ERRORE IN addProjectsWorker", progetto);
+    console.log("ERRORE IN addProjectsWorker RISP");
     console.log("ERRORE -> DATI RICEVUTI IN addProjectsWorker", progetto);
   }
 }

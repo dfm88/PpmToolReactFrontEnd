@@ -1,4 +1,5 @@
 import { Typography, Divider } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import { Grid } from "@material-ui/core";
 import React from "react";
 import MyTextField from "./../FormsCompPersonalized/MyTextField";
@@ -6,7 +7,7 @@ import MySubmitButton from "./../FormsCompPersonalized/MySubmitButton";
 import MyDateTimeField from "./../FormsCompPersonalized/MyDateTimeField";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Actions from "../../../src/redux/actions/index";
 
 const INITIAL_VALUES = {
@@ -42,6 +43,12 @@ function CreateEditProj(props) {
   const handleAddProject = (values, history) => {
     dispatch(Actions.PROJECTS.addProjectAction(values, history));
   };
+
+  const errori = useSelector((state) => state.errorsReducer);
+  console.log("errori", errori);
+  if (Object.keys(errori).length !== 0) {
+    console.log("errori2", errori.data.projectIdentifier);
+  }
 
   return (
     <>
@@ -148,6 +155,16 @@ function CreateEditProj(props) {
                   </MySubmitButton>
                 </Grid>
                 <Grid item md={3} sm={2} xs={false} />
+                <Grid item>
+                  {Object.keys(errori).length === 0 ? (
+                    <div></div>
+                  ) : (
+                    <Alert severity="warning">
+                      {errori.data.projectIdentifier}
+                      ff
+                    </Alert>
+                  )}
+                </Grid>
               </Grid>
             </Grid>
           </Form>
