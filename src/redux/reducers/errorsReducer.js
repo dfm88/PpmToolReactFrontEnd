@@ -8,7 +8,7 @@ const errorsReducer = (state = initialState, action) => {
       return action.errors;
     case PROJECTS.PROJECT_ADDED_FAIL:
       console.log("errorRedycer : ", state);
-      console.log("errorRedycer1 : ", action.errors.data.projectIdentifier);
+      console.log("errorRedycer1 : ", action);
       return action.errors;
     case PROJECTS.LOAD_PROJECTS:
     case PROJECTS.PROJECTS_LOADED_SUCCESS:

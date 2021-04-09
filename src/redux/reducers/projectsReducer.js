@@ -28,15 +28,12 @@ const projectsReducer = (state = [], action) => {
   switch (action.type) {
     case PROJECTS.PROJECTS_LOADED_SUCCESS:
       console.log("stamnpa ricevuti in projectReducer - Load SUCCESS", state);
-      console.log(
-        "stamnpa STATE in projectReducer - Load SUCCESS",
-        action.projects
-      );
+      console.log("stamnpa STATE in projectReducer - Load SUCCESS", action);
       return [...action.projects];
 
     case PROJECTS.PROJECT_ADDED_SUCCESS:
       console.log("stamnpa ricevuti in projectReducer - ADD SUCCESS", state);
-      console.log("stamnpa STATE in projectReducer - ADD SUCCESS", action.proj);
+      console.log("stamnpa STATE in projectReducer - ADD SUCCESS", action);
       return [...state, action.proj];
 
     default:

@@ -22,13 +22,13 @@ function* addProjectWorker(dati) {
     progetto = yield call(api.addProject, ...parametri);
     console.log("Progetto ADDED1 ricevuti in projectSaga", parametri);
     if (progetto.status >= 400) {
-      throw new Error(progetto.data);
+      throw new Error(progetto);
     }
 
     console.log("Progetto ADDED2 ricevuti in projectSaga", progetto);
     yield put(Actions.PROJECTS.projectAddedSuccessAction(progetto.data));
   } catch (e) {
-    yield put(Actions.PROJECTS.projectAddedFailAction(progetto));
+    yield put(Actions.PROJECTS.projectAddedFailAction(progetto.data));
     console.log("ERRORE IN addProjectsWorker", progetto);
     console.log("ERRORE IN addProjectsWorker RISP");
     console.log("ERRORE -> DATI RICEVUTI IN addProjectsWorker", progetto);

@@ -47,7 +47,7 @@ function CreateEditProj(props) {
   const errori = useSelector((state) => state.errorsReducer);
   console.log("errori", errori);
   if (Object.keys(errori).length !== 0) {
-    console.log("errori2", errori.data.projectIdentifier);
+    console.log("errori2", errori);
   }
 
   return (
@@ -160,7 +160,7 @@ function CreateEditProj(props) {
                     <div></div>
                   ) : (
                     <Alert severity="warning">
-                      {errori.data.projectIdentifier}
+                      {JSON.stringify(errori)}
                       ff
                     </Alert>
                   )}
