@@ -1,4 +1,4 @@
-import { Divider, Grid, Typography } from "@material-ui/core";
+import { Paper, Grid, Typography } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { React, useEffect } from "react";
 
@@ -17,6 +17,7 @@ const Dashboard = (props) => {
   const classes = useStyles();
   const progetti = useSelector((state) => state.projectsReducer);
   const isLoading = useSelector((state) => state.loadingReducer);
+  //const isLoading = true;
   console.log("PROGETTI1", progetti);
   console.log("PROGETTI2", props.projectsReducer);
   const dispatch = useDispatch();
@@ -29,10 +30,10 @@ const Dashboard = (props) => {
   return (
     <>
       <Grid container direction="row" className={classes.root}>
-        <Hidden smDown>
-          <Grid item xs={1}></Grid>
+        <Hidden xsDown>
+          <Grid item sm={1} />
         </Hidden>
-        <Grid item xs={10} container direction="column" spacing={4}>
+        <Grid item xs={12} sm={10} container direction="column" spacing={4}>
           <Grid item>
             <Typography variant="h3" style={{ textAlign: "center" }}>
               Projects
@@ -42,7 +43,6 @@ const Dashboard = (props) => {
           <Grid item>
             <ButtonCreate />
           </Grid>
-
           <Grid item container direction="column" spacing={2}>
             {isLoading ? (
               <>
@@ -59,18 +59,18 @@ const Dashboard = (props) => {
             ) : progetti.length === 0 ? (
               <div>Nessun Progetto</div>
             ) : (
-              progetti.map((item, index) => {
+              progetti.map((proj, index) => {
                 return (
                   <Grid item key={index}>
-                    <Project progetti={item} />
+                    <Project progetto={proj} />;
                   </Grid>
                 );
               })
             )}
           </Grid>
         </Grid>
-        <Hidden smDown>
-          <Grid item xs={1}></Grid>
+        <Hidden xsDown>
+          <Grid item sm={1} />
         </Hidden>
       </Grid>
       {/*FINE*/}

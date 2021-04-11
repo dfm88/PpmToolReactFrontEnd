@@ -50,7 +50,7 @@ const HeaderComp = () => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <MenuItem component={Link} to="dashboard">
+          <MenuItem component={Link} to="/dashboard">
             <Hidden xsDown={true}>
               <Typography variant="h6">
                 Personal Project Management Tool&ensp;&ensp;

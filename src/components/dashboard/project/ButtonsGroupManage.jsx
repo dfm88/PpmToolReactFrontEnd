@@ -6,6 +6,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { Typography } from "@material-ui/core";
 import { Hidden } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonsGroupManage = () => {
+const ButtonsGroupManage = (props) => {
   const classes = useStyles();
+  const { project } = props;
   return (
     <>
       <ButtonGroup orientation="vertical" style={{ backgroundColor: "white" }}>
@@ -24,7 +26,7 @@ const ButtonsGroupManage = () => {
           variant="outlined"
           className={classes.root}
         >
-          <Hidden smDown={true}>
+          <Hidden xsDown={true}>
             <Typography> Project Board</Typography>
           </Hidden>
         </Button>
@@ -33,9 +35,17 @@ const ButtonsGroupManage = () => {
           startIcon={<EditIcon />}
           color="primary"
           variant="outlined"
+          component={Link}
+          to={{
+            pathname: `/editproject/${project.projectIdentifier}`,
+            state: {
+              isEdited: true,
+              project,
+            },
+          }}
         >
-          <Hidden smDown={true}>
-            <Typography> Update Project Info</Typography>
+          <Hidden xsDown={true}>
+            <Typography> Update Info</Typography>
           </Hidden>
         </Button>
         <Button
@@ -44,7 +54,7 @@ const ButtonsGroupManage = () => {
           color="secondary"
           variant="outlined"
         >
-          <Hidden smDown={true}>
+          <Hidden xsDown={true}>
             <Typography> Delete Project</Typography>
           </Hidden>
         </Button>

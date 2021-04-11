@@ -2,13 +2,13 @@ import { Typography, Divider } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { Grid } from "@material-ui/core";
 import React from "react";
-import MyTextField from "./../FormsCompPersonalized/MyTextField";
-import MySubmitButton from "./../FormsCompPersonalized/MySubmitButton";
-import MyDateTimeField from "./../FormsCompPersonalized/MyDateTimeField";
+import MyTextField from "../FormsCompPersonalized/MyTextField";
+import MySubmitButton from "../FormsCompPersonalized/MySubmitButton";
+import MyDateTimeField from "../FormsCompPersonalized/MyDateTimeField";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import Actions from "../../../src/redux/actions/index";
+import Actions from "../../redux/actions/index";
 
 const INITIAL_VALUES = {
   projectName: "",
@@ -38,16 +38,31 @@ const createProject = (values) => ({
   end_date: values.end_date,
 });
 
-function CreateEditProj(props) {
+function EditProj(props) {
   const dispatch = useDispatch();
   const handleAddProject = (values, history) => {
     dispatch(Actions.PROJECTS.addProjectAction(values, history));
   };
 
+  const { isEdited } = props.location.state;
+  const { project } = props.location.state;
+  console.log("projectEDIT", project);
+  console.log("PROPS", props);
+
   const errori = useSelector((state) => state.errorsReducer);
   console.log("errori", errori);
   if (Object.keys(errori).length !== 0) {
     console.log("errori2", errori);
+  }
+
+  if (isEdited) {
+    INITIAL_VALUES.description = project.description;
+    INITIAL_VALUES.projectName = project.projectName;
+    INITIAL_VALUES.projectIdentifier = project.projectIdentifier;
+    INITIAL_VALUES.start_date = project.start_date
+      ? project.start_date
+      : new Date().toISOString().slice(0, 10);
+    INITIAL_VALUES.end_date = project.end_date ? project.end_date : "";
   }
 
   return (
@@ -78,7 +93,7 @@ function CreateEditProj(props) {
               >
                 <Grid item xs={12}>
                   <Typography variant="h3" style={{ textAlign: "center" }}>
-                    Create / Edit Project form
+                    Edit Project form
                   </Typography>
                 </Grid>
 
@@ -104,8 +119,8 @@ function CreateEditProj(props) {
                     name="projectIdentifier"
                     label="Unique Project ID"
                     fullWidth={true}
-                    disabled={false}
-                    style={{ backgroundColor: "#e4e8eb" }}
+                    disabled={isEdited}
+                    style={isEdited ? { backgroundColor: "#e4e8eb" } : {}}
                   />
                 </Grid>
                 <Grid item md={3} sm={2} xs={false} />
@@ -174,4 +189,4 @@ function CreateEditProj(props) {
   );
 }
 
-export default CreateEditProj;
+export default EditProj;

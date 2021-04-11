@@ -4,32 +4,31 @@ import ButtonsGroupManage from "./ButtonsGroupManage";
 //import { connect } from "react-redux";
 
 const Project = (props) => {
-  const { progetti } = props;
+  const { progetto } = props;
   return (
-    <>
+    <Grid item>
       <Grid
         style={{ padding: "15px 15px 15px 15px", backgroundColor: "#dae5ed" }}
-        item
         container
+        item
         spacing={5}
-        component={Paper}
       >
-        <Grid item md={4}>
+        <Grid item xs={2} sm={2}>
           <Typography variant="h6" style={{ fontWeight: "bold" }}>
-            {progetti.projectIdentifier}
+            {progetto.projectIdentifier}
           </Typography>
         </Grid>
-        <Grid item md={4}>
-          <Typography variant="h6">{progetti.projectName}</Typography>
+        <Grid item xs={8} sm={6}>
+          <Typography variant="h6">{progetto.projectName}</Typography>
           <Typography variant="subtitle1" style={{ color: "gray" }}>
-            {progetti.description}
+            {progetto.description}
           </Typography>
         </Grid>
-        <Grid item md={4}>
-          <ButtonsGroupManage />
+        <Grid item xs={2} sm={4}>
+          <ButtonsGroupManage project={progetto} />
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
