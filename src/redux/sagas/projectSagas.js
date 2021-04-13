@@ -14,6 +14,17 @@ function* loadProjectsWorker() {
   }
 }
 
+function* loadProjectOneWorker(dati) {
+  try {
+    console.log("Parametro ricevuto in LoadOneProgectWorker ONE", dati);
+    const projectOne = yield call(api.getProjectOne, dati.projectIdentifier);
+    console.log("Progetto ONE ricevuti in projectSaga", projectOne.data);
+    yield put(Actions.PROJECTS.projectOneLoadedSuccessAction(projectOne.data));
+  } catch (e) {
+    console.log("ERRORE IN ONE loadProjectsWorker", e);
+  }
+}
+
 function* addProjectWorker(dati) {
   var parametri = null;
   var progetto = null;
@@ -40,11 +51,19 @@ function* loadProjectsWatcher() {
   yield takeEvery(PROJECTS.LOAD_PROJECTS, loadProjectsWorker);
 }
 
+function* loadProjectOneWatcher() {
+  yield takeEvery(PROJECTS.LOAD_ONE_PROJECT, loadProjectOneWorker);
+}
+
 function* addProjectWatcher() {
   yield takeLatest(PROJECTS.ADD_PROJECT, addProjectWorker);
 }
 
 //Export
 export function* projectSagas() {
-  yield all([loadProjectsWatcher(), addProjectWatcher()]);
+  yield all([
+    loadProjectsWatcher(),
+    loadProjectOneWatcher(),
+    addProjectWatcher(),
+  ]);
 }

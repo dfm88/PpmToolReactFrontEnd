@@ -1,7 +1,10 @@
 import { PROJECTS } from "../constants";
 
-const initialState = [
-  {
+const initialState = {
+  projects: [],
+  project: {},
+};
+/*{
     projectName: "progetto finale",
     projectIdentifier: "ID001",
     description: "il mio ultimo progetto per l Uni",
@@ -21,20 +24,44 @@ const initialState = [
     description: "progetto per la gestione di task",
     start_date: new Date(2019, 7, 5),
     end_date: new Date(2019, 9, 29),
-  },
-];
+  },*/
 
-const projectsReducer = (state = [], action) => {
+const projectsReducer = (state = initialState, action) => {
+  console.log("STATE INIZIALE PROJECT REDUCER", state);
   switch (action.type) {
     case PROJECTS.PROJECTS_LOADED_SUCCESS:
       console.log("stamnpa ricevuti in projectReducer - Load SUCCESS", state);
-      console.log("stamnpa STATE in projectReducer - Load SUCCESS", action);
-      return [...action.projects];
+      console.log("stamnpa ACTION in projectReducer - Load SUCCESS", action);
+      const stateFinaleALLloaded = { ...state, projects: action.projects };
+      console.log(
+        "STATO FINALE PROJECT REDUCER LOADED ALL ONE",
+        stateFinaleALLloaded
+      );
+      return { ...state, projects: action.projects };
 
     case PROJECTS.PROJECT_ADDED_SUCCESS:
       console.log("stamnpa ricevuti in projectReducer - ADD SUCCESS", state);
-      console.log("stamnpa STATE in projectReducer - ADD SUCCESS", action);
-      return [...state, action.proj];
+      console.log("stamnpa ACTION in projectReducer - ADD SUCCESS", action);
+      const stateFinaleADDED = { ...state };
+      console.log("STATO FINALE PROJECT REDUCER ADDED ONE", stateFinaleADDED);
+
+      return { ...state };
+
+    case PROJECTS.PROJECT_ONE_LOADED_SUCCESS:
+      console.log(
+        "stamnpa ricevuti in projectReducer - Load ONE SUCCESS",
+        state
+      );
+      console.log(
+        "stamnpa ACTION in projectReducer - Load ONE SUCCESS",
+        action
+      );
+      const stateFinaleONEloaded = { ...state, project: action.project };
+      console.log(
+        "STATO FINALE PROJECT REDUCER LOADED ONE",
+        stateFinaleONEloaded
+      );
+      return { ...state, project: action.project };
 
     default:
       return state;

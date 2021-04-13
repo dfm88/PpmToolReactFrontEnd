@@ -14,6 +14,21 @@ const projectLoadedFailAction = (errors) => ({
   errors,
 });
 
+const loadOneProjectAction = (projectIdentifier) => ({
+  type: PROJECTS.LOAD_ONE_PROJECT,
+  projectIdentifier,
+});
+
+const projectOneLoadedSuccessAction = (project) => ({
+  type: PROJECTS.PROJECT_ONE_LOADED_SUCCESS,
+  project,
+});
+
+const projectOneLoadedFailAction = (errors) => ({
+  type: PROJECTS.PROJECT_ONE_LOADED_FAIL,
+  errors,
+});
+
 const addProjectAction = (project, history) => ({
   type: PROJECTS.ADD_PROJECT,
   project,
@@ -37,4 +52,7 @@ export {
   addProjectAction,
   projectAddedSuccessAction,
   projectAddedFailAction,
+  loadOneProjectAction,
+  projectOneLoadedSuccessAction,
+  projectOneLoadedFailAction,
 };

@@ -5,6 +5,9 @@ import {
   addProjectAction,
   projectAddedSuccessAction,
   projectAddedFailAction,
+  loadOneProjectAction,
+  projectOneLoadedSuccessAction,
+  projectOneLoadedFailAction,
 } from "./projects";
 
 const Actions = {
@@ -15,6 +18,9 @@ const Actions = {
     addProjectAction,
     projectAddedSuccessAction,
     projectAddedFailAction,
+    loadOneProjectAction,
+    projectOneLoadedSuccessAction,
+    projectOneLoadedFailAction,
   },
 };
 

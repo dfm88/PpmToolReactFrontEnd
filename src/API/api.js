@@ -4,7 +4,14 @@ const urlBase = "http://localhost:8080/api/project/";
 
 export const getProjects = () => {
   return axios.get(`${urlBase}all`).then((res) => {
-    console.log("RESPONsE alla GET", res);
+    console.log("RESPONsE alla GET ALL", res);
+    return res;
+  });
+};
+
+export const getProjectOne = (projectIdentifier) => {
+  return axios.get(`${urlBase}${projectIdentifier}`).then((res) => {
+    console.log("RESPONsE alla GET ONE", res);
     return res;
   });
 };

@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const ButtonsGroupManage = (props) => {
   const classes = useStyles();
   const { project } = props;
+  const { projectIdentifier } = project;
   return (
     <>
       <ButtonGroup orientation="vertical" style={{ backgroundColor: "white" }}>
@@ -40,7 +41,7 @@ const ButtonsGroupManage = (props) => {
             pathname: `/editproject/${project.projectIdentifier}`,
             state: {
               isEdited: true,
-              project,
+              projectIdentifier,
             },
           }}
         >

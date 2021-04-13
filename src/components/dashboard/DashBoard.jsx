@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = (props) => {
   const classes = useStyles();
-  const progetti = useSelector((state) => state.projectsReducer);
+  const progetti = useSelector((state) => state.projectsReducer.projects);
   const isLoading = useSelector((state) => state.loadingReducer);
   //const isLoading = true;
   console.log("PROGETTI1", progetti);

@@ -1,7 +1,7 @@
 import { Typography, Divider } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { Grid } from "@material-ui/core";
-import React from "react";
+import { React, useEffect } from "react";
 import MyTextField from "../FormsCompPersonalized/MyTextField";
 import MySubmitButton from "../FormsCompPersonalized/MySubmitButton";
 import MyDateTimeField from "../FormsCompPersonalized/MyDateTimeField";
@@ -40,14 +40,19 @@ const createProject = (values) => ({
 
 function EditProj(props) {
   const dispatch = useDispatch();
+  //da rivedere
   const handleAddProject = (values, history) => {
     dispatch(Actions.PROJECTS.addProjectAction(values, history));
   };
 
   const { isEdited } = props.location.state;
-  const { project } = props.location.state;
-  console.log("projectEDIT", project);
-  console.log("PROPS", props);
+  const { projectIdentifier } = props.location.state;
+  console.log("projectEDIT", projectIdentifier);
+  console.log("PROPS esit proj", props);
+
+  useEffect(() => {
+    dispatch(Actions.PROJECTS.loadOneProjectAction(projectIdentifier));
+  }, []);
 
   const errori = useSelector((state) => state.errorsReducer);
   console.log("errori", errori);
@@ -55,7 +60,7 @@ function EditProj(props) {
     console.log("errori2", errori);
   }
 
-  if (isEdited) {
+  /*   if (isEdited) {
     INITIAL_VALUES.description = project.description;
     INITIAL_VALUES.projectName = project.projectName;
     INITIAL_VALUES.projectIdentifier = project.projectIdentifier;
@@ -63,7 +68,7 @@ function EditProj(props) {
       ? project.start_date
       : new Date().toISOString().slice(0, 10);
     INITIAL_VALUES.end_date = project.end_date ? project.end_date : "";
-  }
+  } */
 
   return (
     <>
