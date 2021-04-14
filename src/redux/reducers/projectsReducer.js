@@ -63,6 +63,20 @@ const projectsReducer = (state = initialState, action) => {
       );
       return { ...state, project: action.project };
 
+    case PROJECTS.PROJECT_DELETED_SUCCESS:
+      console.log("stamnpa ricevuti in projectReducer - DELETE SUCCESS", state);
+      console.log("stamnpa ACTION in projectReducer - DELETE SUCCESS", action);
+      const { projectIdentifier } = action;
+      console.log(
+        "stamnpa projectIdentifier - DELETE SUCCESS",
+        projectIdentifier
+      );
+      return {
+        ...state,
+        projects: state.projects.filter(
+          (proj) => proj.projectIdentifier !== projectIdentifier
+        ),
+      };
     default:
       return state;
   }

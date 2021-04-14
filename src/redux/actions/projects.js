@@ -46,6 +46,19 @@ const projectAddedFailAction = (errors) => ({
   errors,
 });
 
+const deleteProjectAction = (projectIdentifier) => {
+  console.log("deleteProjActionCALLED");
+  return {
+    type: PROJECTS.DELETE_PROJECT,
+    projectIdentifier,
+  };
+};
+
+const deleteProjectSuccessAction = (projectIdentifier) => ({
+  type: PROJECTS.PROJECT_DELETED_SUCCESS,
+  projectIdentifier,
+});
+
 export {
   loadProjectAction,
   projectLoadedSuccessAction,
@@ -56,4 +69,6 @@ export {
   loadOneProjectAction,
   projectOneLoadedSuccessAction,
   projectOneLoadedFailAction,
+  deleteProjectAction,
+  deleteProjectSuccessAction,
 };

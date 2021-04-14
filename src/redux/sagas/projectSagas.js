@@ -28,6 +28,19 @@ function* loadProjectOneWorker(dati) {
   }
 }
 
+function* deleteProjectWorker(dati) {
+  try {
+    console.log("Parametro ricevuto in delete Worker", dati);
+    const projectDel = yield call(api.deleteProject, dati.projectIdentifier);
+    console.log("Progetto DELETE ricevuti in projectSaga", projectDel);
+    yield put(
+      Actions.PROJECTS.deleteProjectSuccessAction(dati.projectIdentifier)
+    );
+  } catch (e) {
+    console.log("ERRORE IN DELETE ProjectsWorker", e);
+  }
+}
+
 function* addProjectWorker(dati) {
   var parametri = null;
   var progetto = null;
@@ -62,11 +75,16 @@ function* addProjectWatcher() {
   yield takeLatest(PROJECTS.ADD_PROJECT, addProjectWorker);
 }
 
+function* deleteProjectWatcher() {
+  yield takeLatest(PROJECTS.DELETE_PROJECT, deleteProjectWorker);
+}
+
 //Export
 export function* projectSagas() {
   yield all([
     loadProjectsWatcher(),
     loadProjectOneWatcher(),
     addProjectWatcher(),
+    deleteProjectWatcher(),
   ]);
 }

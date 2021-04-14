@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlBase = "http://localhost:8080/api/project/";
+const urlBase = "/api/project/";
 
 export const getProjects = () => {
   return axios.get(`${urlBase}all`).then((res) => {
@@ -20,6 +20,10 @@ export const getProjectOne = (projectIdentifier, history) => {
     .catch((err) => {
       history.push("/dashboard");
     });
+};
+
+export const deleteProject = (projectIdentifier) => {
+  return axios.delete(`${urlBase}${projectIdentifier}`).then((res) => res.data);
 };
 
 export const addProject = (data, history) => {

@@ -8,6 +8,8 @@ import {
   loadOneProjectAction,
   projectOneLoadedSuccessAction,
   projectOneLoadedFailAction,
+  deleteProjectAction,
+  deleteProjectSuccessAction,
 } from "./projects";
 
 const Actions = {
@@ -21,6 +23,8 @@ const Actions = {
     loadOneProjectAction,
     projectOneLoadedSuccessAction,
     projectOneLoadedFailAction,
+    deleteProjectAction,
+    deleteProjectSuccessAction,
   },
 };
 

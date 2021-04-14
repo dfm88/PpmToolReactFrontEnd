@@ -7,6 +7,8 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { Typography } from "@material-ui/core";
 import { Hidden } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Actions from "../../../redux/actions/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +20,15 @@ const ButtonsGroupManage = (props) => {
   const classes = useStyles();
   const { project } = props;
   const { projectIdentifier } = project;
+
+  const dispatch = useDispatch();
+
+  const handleDeleteProject = () => {
+    if (window.confirm("Are you sure to DELETE the whole project??")) {
+      dispatch(Actions.PROJECTS.deleteProjectAction(projectIdentifier));
+    }
+  };
+
   return (
     <>
       <ButtonGroup orientation="vertical" style={{ backgroundColor: "white" }}>
@@ -54,6 +65,7 @@ const ButtonsGroupManage = (props) => {
           startIcon={<DeleteForeverIcon />}
           color="secondary"
           variant="outlined"
+          onClick={handleDeleteProject}
         >
           <Hidden xsDown={true}>
             <Typography> Delete Project</Typography>
