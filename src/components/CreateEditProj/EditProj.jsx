@@ -42,16 +42,20 @@ function EditProj(props) {
   const dispatch = useDispatch();
   //da rivedere
   const handleAddProject = (values, history) => {
+    values.id = project.id;
     dispatch(Actions.PROJECTS.addProjectAction(values, history));
   };
 
-  const { isEdited } = props.location.state;
-  const { projectIdentifier } = props.location.state;
+  //id from url
+  const idFromUrl = props.match.params.id;
+  const { projectIdentifier } = props.location.state || idFromUrl;
+
   console.log("projectEDIT", projectIdentifier);
+  console.log("projectEDIT2", idFromUrl);
   console.log("PROPS esit proj", props);
 
   useEffect(() => {
-    dispatch(Actions.PROJECTS.loadOneProjectAction(projectIdentifier));
+    dispatch(Actions.PROJECTS.loadOneProjectAction(idFromUrl, props.history));
   }, []);
 
   const errori = useSelector((state) => state.errorsReducer);
@@ -60,15 +64,14 @@ function EditProj(props) {
     console.log("errori2", errori);
   }
 
-  /*   if (isEdited) {
-    INITIAL_VALUES.description = project.description;
-    INITIAL_VALUES.projectName = project.projectName;
-    INITIAL_VALUES.projectIdentifier = project.projectIdentifier;
-    INITIAL_VALUES.start_date = project.start_date
-      ? project.start_date
-      : new Date().toISOString().slice(0, 10);
-    INITIAL_VALUES.end_date = project.end_date ? project.end_date : "";
-  } */
+  const project = useSelector((state) => state.projectsReducer.project);
+  INITIAL_VALUES.description = project.description;
+  INITIAL_VALUES.projectName = project.projectName;
+  INITIAL_VALUES.projectIdentifier = project.projectIdentifier;
+  INITIAL_VALUES.start_date = project.start_date
+    ? project.start_date
+    : new Date().toISOString().slice(0, 10);
+  INITIAL_VALUES.end_date = project.end_date ? project.end_date : "";
 
   return (
     <>
@@ -124,8 +127,8 @@ function EditProj(props) {
                     name="projectIdentifier"
                     label="Unique Project ID"
                     fullWidth={true}
-                    disabled={isEdited}
-                    style={isEdited ? { backgroundColor: "#e4e8eb" } : {}}
+                    disabled={true}
+                    style={{ backgroundColor: "#e4e8eb" }}
                   />
                 </Grid>
                 <Grid item md={3} sm={2} xs={false} />

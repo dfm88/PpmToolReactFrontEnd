@@ -39,8 +39,8 @@ const ButtonsGroupManage = (props) => {
           component={Link}
           to={{
             pathname: `/editproject/${project.projectIdentifier}`,
+
             state: {
-              isEdited: true,
               projectIdentifier,
             },
           }}

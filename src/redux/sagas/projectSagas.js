@@ -15,9 +15,12 @@ function* loadProjectsWorker() {
 }
 
 function* loadProjectOneWorker(dati) {
+  var parametri = null;
+  var progetto = null;
   try {
     console.log("Parametro ricevuto in LoadOneProgectWorker ONE", dati);
-    const projectOne = yield call(api.getProjectOne, dati.projectIdentifier);
+    parametri = [dati.projectIdentifier, dati.history];
+    const projectOne = yield call(api.getProjectOne, ...parametri);
     console.log("Progetto ONE ricevuti in projectSaga", projectOne.data);
     yield put(Actions.PROJECTS.projectOneLoadedSuccessAction(projectOne.data));
   } catch (e) {

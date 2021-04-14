@@ -9,11 +9,17 @@ export const getProjects = () => {
   });
 };
 
-export const getProjectOne = (projectIdentifier) => {
-  return axios.get(`${urlBase}${projectIdentifier}`).then((res) => {
-    console.log("RESPONsE alla GET ONE", res);
-    return res;
-  });
+export const getProjectOne = (projectIdentifier, history) => {
+  console.log("HISTORY alla GET ONE", history);
+  return axios
+    .get(`${urlBase}${projectIdentifier}`)
+    .then((res) => {
+      console.log("RESPONsE alla GET ONE", res);
+      return res;
+    })
+    .catch((err) => {
+      history.push("/dashboard");
+    });
 };
 
 export const addProject = (data, history) => {
